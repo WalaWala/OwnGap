@@ -12,6 +12,7 @@ TODO
 - [ ] Canvas image rotation/transformation/alpha 
 - [ ] Touch support (sooner or later)
 - [ ] Add examples
+- [ ] Much refactoring, currently this whole thing is a mess
 
 Licenses
 --------------------------------
