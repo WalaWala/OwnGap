@@ -1,6 +1,7 @@
 OwnGap
 ================================
 A native replacement for the HTML canvas. It executes JavaScript as code behind with the V8 engine.
+Currently made for the impact.js engine, but should work with other engines as well.
 
 TODO
 --------------------------------
@@ -8,7 +9,7 @@ TODO
 - [x] Image drawing/rendering
 - [x] Short Audio clips (longer music is currently not supported)
 - [ ] Canvas image rotation/transformation 
-
+- [ ] Add examples
 
 Licenses
 --------------------------------
