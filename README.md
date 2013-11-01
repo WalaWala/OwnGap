@@ -44,4 +44,4 @@ FastCanvas (C)2013 Adobe Systems, Apache License (License see LICENSE file)
 
 LodePNG for C (ISO C90) and C++ (http://lodev.org/lodepng/) (License see LICENSE file)
 
-As well as somme 1:1 copies of parts from the V8 samples.
+As well as some 1:1 copies of parts from the V8 samples.
