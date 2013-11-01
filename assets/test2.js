@@ -1,2 +1,1 @@
-log("loaded second test file!");
-log("i is: " + i);
+console.log("loaded second test file!");
