@@ -47,7 +47,7 @@ public class OwnGapActivity extends Activity {
 		scriptThread = new Thread(new Runnable() {
 			@Override
 			public void run() {
-				Init(OwnGapActivity.this.getAssets(), "index.js");
+				Init(OwnGapActivity.this.getAssets(), "ownGap/index.js");
 
 				enterEventLoop();
 			}

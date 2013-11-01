@@ -69,7 +69,7 @@ function loadScript(src) {
 	load(src);
 }
 
-loadScript("ownGapCanvas.js");
+loadScript("ownGap/ownGapCanvas.js");
 
 var HTMLElement = function () {
 	var scriptLoaderElement = {};
@@ -167,8 +167,7 @@ window.screen.availWidth = width;
 window.screen.availHeight = height;
 navigator = {};
 navigator.userAgent = "";
-loadScript("lib/impact/impact.js");
-loadScript("lib/game/main.js");
+loadScript("main.js");
 
 if (document.onready)
 	document.onready.apply(window);
@@ -195,7 +194,7 @@ var currentTime = 0;
 setInterval(function () {
 	isActivityPaused = isPaused();
 }, 500);
-loadScript("controller.js");
+loadScript("ownGap/controller.js");
 
 
 function tick() {
