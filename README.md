@@ -9,6 +9,7 @@ TODO
 - [x] JavaScript loop with timeouts and intervals
 - [x] Image drawing/rendering
 - [x] Short Audio clips (longer music is currently not supported)
+- [x] XMLHttpRequest
 - [ ] Canvas image rotation/transformation/alpha 
 - [ ] Touch support (sooner or later)
 - [ ] Add examples
