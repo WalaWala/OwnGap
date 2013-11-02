@@ -167,6 +167,9 @@ window.screen.availWidth = width;
 window.screen.availHeight = height;
 navigator = {};
 navigator.userAgent = "";
+loadScript("ownGap/controller.js");
+loadScript("ownGap/xmlHttpRequest.js");
+
 loadScript("main.js");
 
 if (document.onready)
@@ -194,7 +197,6 @@ var currentTime = 0;
 setInterval(function () {
 	isActivityPaused = isPaused();
 }, 500);
-loadScript("ownGap/controller.js");
 
 
 function tick() {

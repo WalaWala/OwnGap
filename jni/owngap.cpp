@@ -338,6 +338,32 @@ static void LoadSound(const FunctionCallbackInfo<Value>& args) {
 	args.GetReturnValue().Set(Number::New(id));
 }
 
+static void MakeHttpRequest(const FunctionCallbackInfo<Value>& args) {
+	JNIEnv* env;
+	HandleScope handle_scope(isolate);
+	vm->AttachCurrentThread(&env, NULL);
+	String::Utf8Value url(args[0]);
+	String::Utf8Value method(args[1]);
+	String::Utf8Value parameters(args[2]);
+	jstring jstrUrl = env->NewStringUTF(*url);
+	jstring jstrParameters = env->NewStringUTF(*parameters);
+	jstring jstrMethod = env->NewStringUTF(*method);
+	int id = env->CallIntMethod(jniObj, makeHttpRequestJava, jstrUrl, jstrMethod, jstrParameters);
+
+	args.GetReturnValue().Set(Number::New(id));
+}
+
+static void GetHttpResponse(const FunctionCallbackInfo<Value>& args) {
+	JNIEnv* env;
+	HandleScope handle_scope(isolate);
+	vm->AttachCurrentThread(&env, NULL);
+	jstring response = (jstring)env->CallObjectMethod(jniObj, getHttpResponseJava, args[0]->ToInt32()->Value());
+	const char *nativeString = env->GetStringUTFChars(response, 0);
+
+	args.GetReturnValue().Set(String::New(nativeString));
+	env->ReleaseStringUTFChars(response, nativeString);
+}
+
 static void IsPaused(const FunctionCallbackInfo<Value>& args) {
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
@@ -386,6 +412,9 @@ Handle<Context> CreateContext(Isolate* isolate) {
 	global->Set(String::New("stopSound"), FunctionTemplate::New(StopSound));
 	global->Set(String::New("setVolume"), FunctionTemplate::New(SetVolume));
 	global->Set(String::New("getSoundLoaded"), FunctionTemplate::New(GetSoundLoaded));
+
+	global->Set(String::New("makeHttpRequest"), FunctionTemplate::New(MakeHttpRequest));
+	global->Set(String::New("getHttpResponse"), FunctionTemplate::New(GetHttpResponse));
 
 	return Context::New(isolate, NULL, global);
 }
@@ -500,6 +529,12 @@ extern "C" void Java_org_walawala_OwnGap_OwnGapActivity_SetJavaFunctions(JNIEnv 
 	if (setOrthoJava == NULL)
     	return;
 
+	makeHttpRequestJava = env->GetMethodID(mainActivityClass, "MakeHttpRequest", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I");
+	if (setOrthoJava == NULL)
+		return;
+	getHttpResponseJava = env->GetMethodID(mainActivityClass, "GetHttpResponse", "(I)Ljava/lang/String;");
+	if (setOrthoJava == NULL)
+		return;
     //LOGD("functions found? probably....");
 }
 

@@ -1,15 +1,26 @@
 package org.walawala.OwnGap;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.pm.ActivityInfo;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.PowerManager;
 import android.widget.RelativeLayout;
+import tv.ouya.console.api.OuyaIntent;
 
-import java.io.IOException;
+import java.io.*;
+import java.net.HttpURLConnection;
+import java.net.URL;
+import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.Set;
 
 public class OwnGapActivity extends Activity {
 	static {
@@ -57,10 +68,26 @@ public class OwnGapActivity extends Activity {
 
 	}
 
+	BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+		@Override
+		public void onReceive(Context context, Intent intent) {
+			for(Integer se: soundLoaded.keySet()) {
+				soundPool.stop(se);
+			}
+		}
+	};
+	PowerManager.WakeLock wl;
+
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+
+		PowerManager pm = (PowerManager)this.getSystemService(Context.POWER_SERVICE);
+		wl = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK, "OwnGap Wakelock");
+
+		this.registerReceiver(broadcastReceiver, new IntentFilter(OuyaIntent.ACTION_MENUAPPEARING));
+		wl.acquire();
 	}
 
 	@Override
@@ -77,7 +104,8 @@ public class OwnGapActivity extends Activity {
 		// todo
 		contextLost();
 		scriptThread = null;
-
+		this.unregisterReceiver(broadcastReceiver);
+		wl.release();
 		this.finish();
 	}
 
@@ -171,6 +199,69 @@ public class OwnGapActivity extends Activity {
 
 	public void ShowCursor(boolean showCursor) {
 		controller.ShowCursor(showCursor);
+	}
+
+	private HashMap<Integer, String> httpResponses = new HashMap<Integer, String>();
+	int currentRequestId = 0;
+	public int MakeHttpRequest(final String targetUrl, final String method, final String parameters) {
+		final int thatId = currentRequestId + 1;
+
+		Thread t = new Thread(new Runnable() {
+			@Override
+			public void run() {
+				URL url;
+				HttpURLConnection connection = null;
+				try {
+					//Create connection
+					url = new URL(targetUrl);
+					connection = (HttpURLConnection)url.openConnection();
+					connection.setRequestMethod(method);
+					connection.setRequestProperty("Content-Type", "application/x-www-form-urlencoded");
+
+					connection.setRequestProperty("Content-Length", Integer.toString(parameters.getBytes().length));
+					//connection.setRequestProperty("Content-Language", "en-US");
+
+					connection.setUseCaches(false);
+					connection.setDoInput(true);
+					connection.setDoOutput(true);
+
+					//Send request
+					DataOutputStream wr = new DataOutputStream(connection.getOutputStream());
+					wr.writeBytes(parameters);
+					wr.flush();
+					wr.close();
+
+					//Get Response
+					InputStream is = connection.getInputStream();
+					BufferedReader rd = new BufferedReader(new InputStreamReader(is));
+					String line;
+					StringBuilder response = new StringBuilder();
+					while((line = rd.readLine()) != null) {
+						response.append(line);
+						response.append('\r');
+					}
+					rd.close();
+					httpResponses.put(thatId, response.toString());
+				} catch (Exception e) {
+					e.printStackTrace();
+					httpResponses.put(thatId, "<Error>");
+				} finally {
+					if(connection != null) {
+						connection.disconnect();
+					}
+				}
+			}
+		});
+		t.start();
+
+		return thatId;
+	}
+
+	public String GetHttpResponse(int id) {
+		if (httpResponses.containsKey(id)) {
+			return httpResponses.get(id);
+		}
+		return "<No Response>";
 	}
 
 	public boolean GetButtonState(int playerId, int button) {

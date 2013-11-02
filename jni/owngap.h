@@ -39,6 +39,8 @@ static jmethodID setVolumeJava;
 static jmethodID getSoundLoadedJava;
 static jmethodID isPausedJava;
 static jmethodID setOrthoJava;
+static jmethodID makeHttpRequestJava;
+static jmethodID getHttpResponseJava;
 
 static jclass mainActivityClass;
 static JNIEnv *jniEnv;
