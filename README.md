@@ -15,7 +15,7 @@ TODO
 - [x] Image drawing/rendering
 - [x] Short Audio clips (longer music is currently not supported)
 - [x] XMLHttpRequest
-- [ ] Keyboard interaction
+- [x] Keyboard interaction (not working for Ouya, yet)
 - [ ] Canvas image rotation/transformation/alpha 
 - [ ] Touch support (sooner or later)
 - [ ] Add examples
