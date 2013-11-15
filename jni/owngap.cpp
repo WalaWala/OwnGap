@@ -265,6 +265,32 @@ static void GetAxis(const FunctionCallbackInfo<Value>& args) {
 	args.GetReturnValue().Set(Number::New(axisState));
 }
 
+static void GetKeys(const FunctionCallbackInfo<Value>& args) {
+	JNIEnv* env;
+	HandleScope handle_scope(isolate);
+	vm->AttachCurrentThread(&env, NULL);
+	jintArray axisState = (jintArray)env->CallObjectMethod(jniObj, getKeyboardStateJava);
+
+	jsize len = env->GetArrayLength(axisState);
+
+    if (len == 0) {
+    	env->DeleteLocalRef(axisState);
+		return;
+	}
+
+	Local<Array> arr = Array::New(len);
+	jint *body = env->GetIntArrayElements(axisState, 0);
+	for (int i = 0; i < len; ++i) {
+		Local<Integer> nr = Integer::New(body[i]);
+		arr->Set(i, nr);
+	}
+
+	env->ReleaseIntArrayElements(axisState, body, 0);
+   	env->DeleteLocalRef(axisState);
+
+	args.GetReturnValue().Set(arr);
+}
+
 static void ShowCursor(const FunctionCallbackInfo<Value>& args) {
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
@@ -373,6 +399,29 @@ static void IsPaused(const FunctionCallbackInfo<Value>& args) {
 	args.GetReturnValue().Set(Boolean::New(paused));
 }
 
+static void ShiftPressed(const FunctionCallbackInfo<Value>& args) {
+	JNIEnv* env;
+	HandleScope handle_scope(isolate);
+	vm->AttachCurrentThread(&env, NULL);
+	bool pressed = env->CallBooleanMethod(jniObj, shiftPressedJava);
+
+	args.GetReturnValue().Set(Boolean::New(pressed));
+}
+
+static void ShowKeyboard(const FunctionCallbackInfo<Value>& args) {
+	JNIEnv* env;
+	HandleScope handle_scope(isolate);
+	vm->AttachCurrentThread(&env, NULL);
+	env->CallVoidMethod(jniObj, showKeyboardJava);
+}
+
+static void HideKeyboard(const FunctionCallbackInfo<Value>& args) {
+	JNIEnv* env;
+	HandleScope handle_scope(isolate);
+	vm->AttachCurrentThread(&env, NULL);
+	env->CallVoidMethod(jniObj, hideKeyboardJava);
+}
+
 static void RegisterTick(const FunctionCallbackInfo<v8::Value>&args) {
 	HandleScope handle_scope(args.GetIsolate());
 	//LOGD("Registering tick!");
@@ -415,6 +464,12 @@ Handle<Context> CreateContext(Isolate* isolate) {
 
 	global->Set(String::New("makeHttpRequest"), FunctionTemplate::New(MakeHttpRequest));
 	global->Set(String::New("getHttpResponse"), FunctionTemplate::New(GetHttpResponse));
+
+	global->Set(String::New("showKeyboard"), FunctionTemplate::New(ShowKeyboard));
+	global->Set(String::New("hideKeyboard"), FunctionTemplate::New(HideKeyboard));
+
+	global->Set(String::New("getKeys"), FunctionTemplate::New(GetKeys));
+	global->Set(String::New("isShiftPressed"), FunctionTemplate::New(ShiftPressed));
 
 	return Context::New(isolate, NULL, global);
 }
@@ -530,11 +585,26 @@ extern "C" void Java_org_walawala_OwnGap_OwnGapActivity_SetJavaFunctions(JNIEnv 
     	return;
 
 	makeHttpRequestJava = env->GetMethodID(mainActivityClass, "MakeHttpRequest", "(Ljava/lang/String;Ljava/lang/String;Ljava/lang/String;)I");
-	if (setOrthoJava == NULL)
+	if (makeHttpRequestJava == NULL)
 		return;
 	getHttpResponseJava = env->GetMethodID(mainActivityClass, "GetHttpResponse", "(I)Ljava/lang/String;");
-	if (setOrthoJava == NULL)
+	if (getHttpResponseJava == NULL)
 		return;
+
+    showKeyboardJava = env->GetMethodID(mainActivityClass, "ShowKeyboard", "()V");
+	if (showKeyboardJava == NULL)
+    	return;
+    hideKeyboardJava = env->GetMethodID(mainActivityClass, "HideKeyboard", "()V");
+	if (hideKeyboardJava == NULL)
+    	return;
+
+    getKeyboardStateJava = env->GetMethodID(mainActivityClass, "GetKeys", "()[I");
+	if (getKeyboardStateJava == NULL)
+    	return;
+
+ 	shiftPressedJava = env->GetMethodID(mainActivityClass, "ShiftPressed", "()Z");
+    if (shiftPressedJava == NULL)
+        return;
     //LOGD("functions found? probably....");
 }
 

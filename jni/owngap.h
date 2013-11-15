@@ -41,6 +41,10 @@ static jmethodID isPausedJava;
 static jmethodID setOrthoJava;
 static jmethodID makeHttpRequestJava;
 static jmethodID getHttpResponseJava;
+static jmethodID showKeyboardJava;
+static jmethodID hideKeyboardJava;
+static jmethodID getKeyboardStateJava;
+static jmethodID shiftPressedJava;
 
 static jclass mainActivityClass;
 static JNIEnv *jniEnv;

@@ -144,18 +144,58 @@ function alert(str) {
 function confirm() {}
 function prompt() {}
 
+var keyDownEvents = [];
+var keyPressEvents = [];
+var keyUpEvents = [];
 window.addEventListener = function (evt, fn, capture) {
 	if (evt === "load") {
 		readyEvents.push(fn);
+	} else if (evt === "keydown") {
+		keyDownEvents.push(fn);
+	} else if (evt === "keypress") {
+		keyPressEvents.push(fn);
+	} else if (evt === "keyup") {
+		keyUpEvents.push(fn);
 	}
 };
 document.addEventListener = function (evt, fn, capture) {
 	if (evt === "DOMContentLoaded") {
 		readyEvents.push(fn);
+	} else if (evt === "keydown") {
+		keyDownEvents.push(fn);
+	} else if (evt === "keypress") {
+		keyPressEvents.push(fn);
+	} else if (evt === "keyup") {
+		keyUpEvents.push(fn);
 	}
 };
 document.removeEventListener = function (evt, fn, capture) {
+	if (evt === "keydown") {
+		var index = keyDownEvents.indexOf(fn);
+		if (index !== -1) {
+			keyDownEvents.splice(index, 1);
+		}
+	}
+	if (evt === "keypress") {
+		var index = keyPressEvents.indexOf(fn);
+		if (index !== -1) {
+			keyPressEvents.splice(index, 1);
+		}
+	}
+	if (evt === "keyup") {
+		var index = keyUpEvents.indexOf(fn);
+		if (index !== -1) {
+			keyUpEvents.splice(index, 1);
+		}
+	}
+	if (evt === "load") {
+		var index = readyEvents.indexOf(fn);
+		if (index !== -1) {
+			readyEvents.splice(index, 1);
+		}
+	}
 };
+
 window.removeEventListener = function (evt, fn, capture) {
 };
 window.innerWidth = width;

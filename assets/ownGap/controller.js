@@ -83,6 +83,25 @@ function getButtons() {
 		fire(BUTTON_MENU);
 	}
 }
+
+function getKeyboardKeys() {
+	var keys = getKeys();
+	var isShift = isShiftPressed();
+	if (keys && keys.length > 0) {
+		for (var j = 0; j < keys.length; ++j) {
+			for (var i = 0; i < keyDownEvents.length; ++i) {
+				keyDownEvents[i]({shiftKey: isShift, key: String.fromCharCode(keys[j]), char: String.fromCharCode(keys[j]), keyCode: keys[j], charCode: keys[j]});
+			}
+			for (var i = 0; i < keyUpEvents.length; ++i) {
+				keyUpEvents[i]({shiftKey: isShift, key: String.fromCharCode(keys[j]), char: String.fromCharCode(keys[j]), keyCode: keys[j], charCode: keys[j]});
+			}
+			for (var i = 0; i < keyPressEvents.length; ++i) {
+				keyPressEvents[i]({shiftKey: isShift, key: String.fromCharCode(keys[j]), char: String.fromCharCode(keys[j]), keyCode: keys[j], charCode: keys[j]});
+			}
+		}
+	}
+}
+
 function getButtonStateOnce(buttonId) {
 	if (!joyButtonsState_P1[buttonId]) {
 		if (askedForButton.indexOf(buttonId) !== -1) {
@@ -116,4 +135,5 @@ function removeJoystickEventListener(buttonId, fun) {
 
 if (isOwnGap) {
 	setInterval(getButtons, joyDelay);
+	setInterval(getKeyboardKeys, 10);
 }

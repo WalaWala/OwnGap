@@ -12,6 +12,7 @@ import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.RelativeLayout;
 import tv.ouya.console.api.OuyaIntent;
 
@@ -20,6 +21,7 @@ import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.Set;
 
 public class OwnGapActivity extends Activity {
@@ -257,6 +259,20 @@ public class OwnGapActivity extends Activity {
 		return thatId;
 	}
 
+	public void ShowKeyboard() {
+		InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		if (inputMethodManager != null) {
+			inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+		}
+	}
+
+	public void HideKeyboard() {
+		InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+		if (inputMethodManager != null) {
+			inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_IMPLICIT_ONLY);
+		}
+	}
+
 	public String GetHttpResponse(int id) {
 		if (httpResponses.containsKey(id)) {
 			return httpResponses.get(id);
@@ -276,6 +292,31 @@ public class OwnGapActivity extends Activity {
 		fastCanvasView.mRenderer.width = width;
 		fastCanvasView.mRenderer.height = height;
 		fastCanvasView.mRenderer.alreadyOrthoSet = false;
+	}
+
+	public int[] GetKeys() {
+		int[] ret = new int[controller.keysDown.size()];
+		Iterator<Integer> iterator = controller.keysDown.iterator();
+		if (controller.keysDown.size() == 0) {
+			return ret;
+		}
+
+		for (int i = 0; i < ret.length; i++)
+		{
+			ret[i] = iterator.next();
+		}
+
+		synchronized (controller.keysDown) {
+			controller.keysDown.clear();
+		}
+
+		return ret;
+	}
+
+	public boolean ShiftPressed() {
+		boolean pressed = controller.isShiftPressed;
+		controller.isShiftPressed = false;
+		return pressed;
 	}
 
 	public native boolean Init(AssetManager manager, String fileName);
