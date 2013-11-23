@@ -2,9 +2,10 @@ var _timer = [];
 var window = this;
 var isDebug = false;
 var printStats = true;
-var timers = 0;
+var timers = 2; // don't start at 0. two is good.
 var _oldTimers = [];
 var isOwnGap = true;
+
 function setTimeout(fn, timeout) {
 	if (isDebug && arguments.callee.caller)
 		log("Setting timeout from: " + arguments.callee.caller.toString());
@@ -19,10 +20,16 @@ function setTimeout(fn, timeout) {
 		obj = { id: timers++, once: true, targetTime: getTimestamp() + timeout, timeout: timeout, fn: fn };
 	}
 	_timer.push(obj);
+	if (isDebug)
+		console.log("timer id: " + obj.id);
 	return obj.id;
 }
 
 function setInterval(fn, timeout) {
+	if (isDebug)
+		console.log("new interval!!");
+	if (isDebug && arguments.callee.caller)
+		log("Setting interval from: " + arguments.callee.caller.toString());
 	var obj;
 	if (_oldTimers.length > 0) {
 		obj = _oldTimers.pop();
@@ -34,18 +41,31 @@ function setInterval(fn, timeout) {
 		obj = { id: timers++, once: false, targetTime: getTimestamp() + timeout, timeout: timeout, fn: fn };
 	}
 	_timer.push(obj);
+	if (isDebug)
+		console.log("timer id: " + obj.id);
 	return obj.id;
 }
 
 function clearTimeout(id) {
-	if (isDebug && arguments.callee.caller)
-		log("Clearing timeout from: " + arguments.callee.caller.toString());
+	// todo: BUGBUG wargh, whatafix!!!
+	//if (id === 0) {
+	//	return;
+	//}
+	if (isDebug && arguments.callee.caller) {
+		log("Clearing timeout from: " + arguments.callee.caller.toString() + " for id: " + id);
+	} else if (isDebug && arguments.callee) {
+		log("2) Clearing timeout for id: " + id);		
+	}
 	for (var i in _timer) {
 		if (_timer.hasOwnProperty(i)) {
 			if (_timer[i].id === id) {
 				var index = _timer.indexOf(_timer[i]);
-				//delete _timer[i];
-				_oldTimers.push(_timer.splice(index, 1)[0]);
+				var item = _timer.splice(index, 1)[0];
+				if (isDebug) {
+					log("found item index: " + index + "/" + JSON.stringify(item));
+					log(item.fn.toString());
+				}
+				_oldTimers.push(item);
 			}
 		}
 	}
@@ -60,7 +80,7 @@ var console = {
 
 var isActivityPaused = false;
 function shouldExit() {
-	return isActivityPaused;
+	return false;
 }
 
 function loadScript(src) {
@@ -207,8 +227,8 @@ window.screen.availWidth = width;
 window.screen.availHeight = height;
 navigator = {};
 navigator.userAgent = "";
-loadScript("ownGap/controller.js");
 loadScript("ownGap/xmlHttpRequest.js");
+loadScript("ownGap/controller.js");
 
 loadScript("main.js");
 
@@ -241,16 +261,15 @@ setInterval(function () {
 
 function tick() {
 	while (!shouldExit()) {
-		//if (!isPaused()) {
+		if (!isActivityPaused) {
 			currentTime = getTimestamp();
-			for (v = 0; v < _timer.length; ++v) {
-				if (_timer[v] && _timer[v].targetTime <= currentTime) {
-					var fun = _timer[v].fn;
-					if (_timer[v].once) {
-						var index = _timer.indexOf(_timer[v]);
-						_oldTimers.push(_timer.splice(index, 1)[0]);
-					} else if (!_timer[v].once) {
-						_timer[v].targetTime += _timer[v].timeout;
+			for (l = 0; l < _timer.length; ++l) {
+				if (_timer[l] && _timer[l].targetTime <= currentTime) {
+					var fun = _timer[l].fn;
+					if (_timer[l].once) {
+						clearTimeout(_timer[l].id);
+					} else if (!_timer[l].once) {
+						_timer[l].targetTime += _timer[l].timeout;
 					}
 					fun();
 				}
@@ -258,19 +277,35 @@ function tick() {
 			++eventloopLoops;
 			if (currentTime-lastLoop >= 2000) {
 				if (printStats) {
-					log("eventloopLoops: " + eventloopLoops + ", timerLength: " + _timer.length);
+					log("eventloopLoops: " + parseInt(eventloopLoops/2) + ", timerLength: " + _timer.length);
 				}
 				eventloopLoops = 0;
-				//if (secondsSinceReset >= 10) {
-				//	console.log("GC!");
-				//	callIdle(); // gc
-				//	secondsSinceReset = 0;
-				//}
+				if (secondsSinceReset >= 10) {
+					// whatever, better check timer script, but for now...
+					console.log("GC!");
+					//callIdle(); // gc
+					secondsSinceReset = 0;
+					var tmptimer = [];
+					for (l = 0; l < _timer.length; ++l) {
+						if (_timer.hasOwnProperty(l) && _timer[l] && _timer[l].targetTime > currentTime) {
+							tmptimer.push(_timer[l]);
+						}
+					}
+					_timer = tmptimer;
+				}
 				++secondsSinceReset;
 				lastLoop = getTimestamp();
 			}
 			window.ownGapCanvas.render();
-		//}
+		} else {
+			if (!isPaused()) {
+				isActivityPaused = false;
+				currentTime = getTimestamp();
+				for (v = 0; v < _timer.length; ++v) {
+					_timer[v].targetTime = currentTime + _timer[v].timeout;
+				}
+			}
+		}
 	}
 }
 registerTick();

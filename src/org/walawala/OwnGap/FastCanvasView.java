@@ -17,22 +17,59 @@
 package org.walawala.OwnGap;
 
 import android.opengl.GLSurfaceView;
+import android.text.InputType;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.SurfaceHolder;
 import android.content.Context;
+import android.view.View;
+import android.view.inputmethod.BaseInputConnection;
+import android.view.inputmethod.EditorInfo;
+import android.view.inputmethod.InputConnection;
 
 public class FastCanvasView extends GLSurfaceView {
+	public class InputConnection extends BaseInputConnection
+	{
+		private final KeyEvent delKeyDownEvent = new KeyEvent(KeyEvent.ACTION_DOWN, KeyEvent.KEYCODE_DEL);
+		private final KeyEvent delKeyUpEvent = new KeyEvent(KeyEvent.ACTION_UP, KeyEvent.KEYCODE_DEL);
+
+		public InputConnection(View view)
+		{
+			super(view, false);
+			this.setSelection(0, 0);
+		}
+
+		@Override
+		public boolean deleteSurroundingText(int leftLength, int rightLength)
+		{
+			// Android SDK 16+ doesn't send key events for backspace but calls this method
+			//NativeInterface.Activity.onKeyDown(KeyEvent.KEYCODE_DEL, this.delKeyDownEvent);
+			//NativeInterface.Activity.onKeyUp(KeyEvent.KEYCODE_DEL, this.delKeyUpEvent);
+			synchronized (OController.keysDown) {
+				OController.keysDown.add(8);
+			}
+			return super.deleteSurroundingText(leftLength, rightLength);
+		}
+	}
 
 	public FastCanvasView(Context context) {
 		super(context);
 		this.setEGLConfigChooser( false );// turn off the depth buffer
 		mRenderer = new FastCanvasRenderer(this);
+
 		this.setRenderer(mRenderer);
 		this.setRenderMode(RENDERMODE_CONTINUOUSLY);
-		
+
+		this.setFocusable(true);
 		this.setFocusableInTouchMode(true);
 		this.requestFocus();
+	}
+
+	@Override
+	public boolean onCheckIsTextEditor() // required for creation of soft keyboard
+	{
+		return false;
 	}
 
 	public void setQueue(String queue) {
@@ -52,10 +89,18 @@ public class FastCanvasView extends GLSurfaceView {
 	    if (isPaused) {
 	    	isPaused = false;
 	    	mRenderer.reloadTextures();
-	    	super.onResume();
+	    	//super.onResume();
 	    }
 	}
-	
+	@Override
+	public InputConnection onCreateInputConnection(EditorInfo outAttributes)  // required for creation of soft keyboard
+	{
+		outAttributes.actionId = EditorInfo.IME_ACTION_DONE;
+		outAttributes.imeOptions = EditorInfo.IME_FLAG_NO_EXTRACT_UI;
+		outAttributes.inputType = InputType.TYPE_CLASS_TEXT;
+		return new InputConnection(this);
+	}
+
 	public void surfaceChanged(SurfaceHolder holder, int format, int w, int h)
 	{
         Log.i("CANVAS", "CanvasView surfaceChanged");

@@ -20,7 +20,7 @@ var XMLHttpRequest = function () {
 	that.setRequestHeader = function () {};
 
 	that.send = function (parameters) {
-		that.intervalTO = setInterval(function () {
+		var intervalTO = setInterval(function () {
 			var answer = getHttpResponse(id);
 			if (answer !== "<No Response>") {
 				that.readyState = 4;
@@ -29,7 +29,7 @@ var XMLHttpRequest = function () {
 				} else {
 					that.status = 500;
 				}
-				clearInterval(that.intervalTO);
+				clearInterval(intervalTO);
 				that.responseText = answer;
 				that.response = answer;
 				that.onreadystatechange();

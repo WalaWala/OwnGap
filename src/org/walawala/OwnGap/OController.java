@@ -22,7 +22,7 @@ public class OController {
 	}
 
 	public HashMap<Integer, ControllerInfo> controllers = new HashMap<Integer, ControllerInfo>();
-	public final ArrayList<Integer> keysDown = new ArrayList<Integer>();
+	public static final ArrayList<Integer> keysDown = new ArrayList<Integer>();
 	public boolean isShiftPressed = false;
 	private final boolean isRunninOnOuya = OuyaFacade.getInstance().isRunningOnOUYAHardware();
 
@@ -66,7 +66,7 @@ public class OController {
 							} else if (keyCode >= KeyEvent.KEYCODE_0 && keyCode <= KeyEvent.KEYCODE_9) {
 								keysDown.add(keyCode + 41);
 							} else if (keyCode == KeyEvent.KEYCODE_SPACE) {
-								keysDown.add(20);
+								keysDown.add(32);
 							} else if (keyCode == KeyEvent.KEYCODE_ENTER) {
 								keysDown.add(13);
 							} else if (keyCode == KeyEvent.KEYCODE_TAB) {

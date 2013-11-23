@@ -5,7 +5,6 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
-import android.content.pm.ActivityInfo;
 import android.content.res.AssetManager;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -19,10 +18,8 @@ import tv.ouya.console.api.OuyaIntent;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
-import java.util.AbstractMap;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.Set;
 
 public class OwnGapActivity extends Activity {
 	static {
@@ -90,13 +87,14 @@ public class OwnGapActivity extends Activity {
 
 		this.registerReceiver(broadcastReceiver, new IntentFilter(OuyaIntent.ACTION_MENUAPPEARING));
 		wl.acquire();
+		startScriptAndStuff();
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		this.paused = false;
-		startScriptAndStuff();
+		//startScriptAndStuff();
 	}
 
 	@Override
@@ -104,11 +102,11 @@ public class OwnGapActivity extends Activity {
 		super.onPause();
 		this.paused = true;
 		// todo
-		contextLost();
-		scriptThread = null;
-		this.unregisterReceiver(broadcastReceiver);
-		wl.release();
-		this.finish();
+		//contextLost();
+		//scriptThread = null;
+		//this.unregisterReceiver(broadcastReceiver);
+		//wl.release();
+		//this.finish();
 	}
 
 	public boolean IsPaused() {
@@ -262,14 +260,14 @@ public class OwnGapActivity extends Activity {
 	public void ShowKeyboard() {
 		InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (inputMethodManager != null) {
-			inputMethodManager.toggleSoftInput(InputMethodManager.SHOW_IMPLICIT, 0);
+			inputMethodManager.showSoftInput(fastCanvasView, InputMethodManager.SHOW_FORCED);
 		}
 	}
 
 	public void HideKeyboard() {
 		InputMethodManager inputMethodManager = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
 		if (inputMethodManager != null) {
-			inputMethodManager.toggleSoftInput(0, InputMethodManager.HIDE_IMPLICIT_ONLY);
+			inputMethodManager.hideSoftInputFromWindow(fastCanvasView.getWindowToken(), 0);
 		}
 	}
 
