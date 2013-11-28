@@ -50,6 +50,8 @@ function getButtons() {
 	joyButtonsState_P1[BUTTON_DPAD_DOWN] = getButton(player_id, BUTTON_DPAD_DOWN) === true;
 	joyButtonsState_P1[BUTTON_DPAD_LEFT] = getButton(player_id, BUTTON_DPAD_LEFT) === true;
 	joyButtonsState_P1[BUTTON_DPAD_RIGHT] = getButton(player_id, BUTTON_DPAD_RIGHT) === true;
+	joyButtonsState_P1[BUTTON_R1] = getButton(player_id, BUTTON_R1) === true;
+	joyButtonsState_P1[BUTTON_L1] = getButton(player_id, BUTTON_L1) === true;
 	joyButtonsState_P1[BUTTON_O] = getButton(player_id, BUTTON_O) === true;
 	joyButtonsState_P1[BUTTON_U] = getButton(player_id, BUTTON_U) === true;
 	joyButtonsState_P1[BUTTON_Y] = getButton(player_id, BUTTON_Y) === true;
@@ -76,11 +78,18 @@ function getButtons() {
 	if (joyButtonsState_P1[BUTTON_Y]) {
 		fire(BUTTON_Y);
 	}
+	if (joyButtonsState_P1[BUTTON_L1]) {
+		fire(BUTTON_L1);
+	}
+	if (joyButtonsState_P1[BUTTON_R1]) {
+		fire(BUTTON_R1);
+	}
 	if (joyButtonsState_P1[BUTTON_A]) {
 		fire(BUTTON_A);
 	}
 	if (joyButtonsState_P1[BUTTON_MENU]) {
-		fire(BUTTON_MENU);
+		// not for now... fixes a bug for ouya when the new pause menu is opened
+		//fire(BUTTON_MENU);
 	}
 }
 
@@ -89,15 +98,16 @@ function getKeyboardKeys() {
 		var keys = getKeys();
 		var isShift = isShiftPressed();
 		if (keys && keys.length > 0) {
+			console.log("keys in queue: " + keys.length);
 			for (var j = 0; j < keys.length; ++j) {
 				for (var i = 0; i < keyDownEvents.length; ++i) {
 					keyDownEvents[i]({shiftKey: isShift, key: String.fromCharCode(keys[j]), target: {tagName: "INPUT"}, char: String.fromCharCode(keys[j]), keyCode: keys[j], charCode: keys[j]});
 				}
-				for (var i = 0; i < keyUpEvents.length; ++i) {
-					keyUpEvents[i]({shiftKey: isShift, key: String.fromCharCode(keys[j]), target: {tagName: "INPUT"}, char: String.fromCharCode(keys[j]), keyCode: keys[j], charCode: keys[j]});
-				}
 				for (var i = 0; i < keyPressEvents.length; ++i) {
 					keyPressEvents[i]({shiftKey: isShift, key: String.fromCharCode(keys[j]), target: {tagName: "INPUT"}, char: String.fromCharCode(keys[j]), keyCode: keys[j], charCode: keys[j]});
+				}
+				for (var i = 0; i < keyUpEvents.length; ++i) {
+					keyUpEvents[i]({shiftKey: isShift, key: String.fromCharCode(keys[j]), target: {tagName: "INPUT"}, char: String.fromCharCode(keys[j]), keyCode: keys[j], charCode: keys[j]});
 				}
 			}
 		}

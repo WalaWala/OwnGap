@@ -33,6 +33,7 @@ var XMLHttpRequest = function () {
 				that.responseText = answer;
 				that.response = answer;
 				that.onreadystatechange();
+				that.onreadystatechange = function () {}; // we only have one readystatechange so clear function after we've called it - otherwise the function will be called over and over again
 			}
 		}, 10);
 		id = makeHttpRequest(_url, _method, parameters);
