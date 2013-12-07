@@ -130,35 +130,60 @@ if (isOwnGap) {
 }
 
 var renderQueue = "";
+var ownGapContext = {
+	drawImage: function (image, sx, sy, sw, sh, dx, dy, dw, dh) {
+		return window.ownGapCanvas.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
+	},
+	save: function () {
+		renderQueue = renderQueue.concat("v;");
+	},
+	restore: function () {
+		renderQueue = renderQueue.concat("e;");
+	},
+	scale: function (a, d) {
+		renderQueue = renderQueue.concat("k" + a.toFixed(6) + "," + d.toFixed(6) + ";");
+	},
+	rotate: function (value) {
+		renderQueue = renderQueue.concat("r" + value.toFixed(6) + ";");
+	},
+	translate: function (x, y) {
+		renderQueue = renderQueue.concat("l" + x + "," + y + ";");
+	},
+	transform: function (a, b, c, d, tx, ty) {
+		renderQueue = renderQueue.concat("f" + (a===1 ? "1" : a.toFixed(6)) + "," + (b===0 ? "0" : b.toFixed(6)) + "," + (c===0 ? "0" : c.toFixed(6)) + "," + (d===1 ? "1" : d.toFixed(6)) + "," + tx + "," + ty + ";");
+	},
+	resetTransform: function() {
+		renderQueue = renderQueue.concat("m;");
+	},
+	setTransform: function (a, b, c, d, tx, ty) {
+		renderQueue = renderQueue.concat("t" + (a===1 ? "1" : a.toFixed(6)) + "," + (b===0 ? "0" : b.toFixed(6)) + "," + (c===0 ? "0" : c.toFixed(6)) + "," + (d===1 ? "1" : d.toFixed(6)) + "," + tx + "," + ty + ";");
+	},
+	fillStyle: "",
+	fillRect: function () {},
+	getImageData: function () {
+		return [];
+	}
+};
+var globalAlpha = 1.0;
+Object.defineProperty(ownGapContext, "globalAlpha", {
+	get: function () {
+		return globalAlpha;
+	},
+	set: function (value) {
+		globalAlpha = parseFloat(value);
+		renderQueue = renderQueue.concat("a" + value.toFixed(6) + ";");
+	}
+});
+
 window.ownGapCanvas = {
 	images: [],
-
-	ownGapContext: {
-		drawImage: function (image, sx, sy, sw, sh, dx, dy, dw, dh) {
-			return window.ownGapCanvas.drawImage(image, sx, sy, sw, sh, dx, dy, dw, dh);
-		},
-		save: function () {
-			renderQueue = renderQueue.concat("v;");
-		},
-		restore: function () {
-			renderQueue = renderQueue.concat("e;");
-		},
-		scale: function (a, d) {
-			renderQueue = renderQueue.concat("k" + a.toFixed(6) + "," + d.toFixed(6) + ";");
-		},
-		fillStyle: "",
-		fillRect: function () {},
-		getImageData: function () {
-			return [];
-		}
-	},
 
 	style: {},
 
 	getContext: function () {
 		if (isDebug)
 			console.log("getting context");
-		return window.ownGapCanvas.ownGapContext;
+		return ownGapContext;
 	},
 	createImage: function () {
 		var img;
