@@ -16,9 +16,9 @@ TODO
 - [x] Short Audio clips (longer music is currently not supported)
 - [x] XMLHttpRequest
 - [x] Keyboard interaction
-- [ ] Canvas image rotation/transformation/alpha 
+- [x] Canvas image rotation/transformation/alpha 
 - [ ] Touch support (sooner or later)
-- [ ] Add examples
+- [x] Add examples
 - [ ] Much refactoring, currently this whole thing is a mess
 
 Licenses
