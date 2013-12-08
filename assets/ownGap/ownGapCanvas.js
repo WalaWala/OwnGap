@@ -159,6 +159,7 @@ var ownGapContext = {
 		renderQueue = renderQueue.concat("t" + (a===1 ? "1" : a.toFixed(6)) + "," + (b===0 ? "0" : b.toFixed(6)) + "," + (c===0 ? "0" : c.toFixed(6)) + "," + (d===1 ? "1" : d.toFixed(6)) + "," + tx + "," + ty + ";");
 	},
 	fillStyle: "",
+	clearRect: function () {},
 	fillRect: function () {},
 	getImageData: function () {
 		return [];
