@@ -19,6 +19,7 @@ TODO
 - [x] Canvas image rotation/transformation/alpha 
 - [ ] Touch support (sooner or later)
 - [x] Add examples
+- [ ] Create a JAR from this thing
 - [ ] Much refactoring, currently this whole thing is a mess
 
 Licenses
