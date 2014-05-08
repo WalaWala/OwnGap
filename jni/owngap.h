@@ -20,6 +20,7 @@ using namespace v8;
 
 static int currentTextureId = 0;
 int otherTextureCount = 0;
+static bool renderNow = false;
 
 static AAssetManager* assetmanager;
 static Persistent<Context> context;
@@ -50,6 +51,7 @@ static jclass mainActivityClass;
 static JNIEnv *jniEnv;
 static jobject jniObj;
 static Persistent<Function> callbackFunction;
+static Persistent<Function> renderFunction;
 static Persistent<Context> debug_message_context;
 
 #endif

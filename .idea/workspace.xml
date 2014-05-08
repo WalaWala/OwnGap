@@ -22,30 +22,13 @@
     </option>
     <option name="selection" value="[Full]" />
   </component>
+  <component name="AndroidLogFilters">
+    <option name="TOOL_WINDOW_CUSTOM_FILTER" value="owngap" />
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="9357e80b-631e-46e6-8159-c169c16bcc25" name="Default" comment="" />
     <ignored path="v8Test3.iws" />
     <ignored path=".idea/workspace.xml" />
-    <file path="$PROJECT_DIR$/res/values/strings.xml" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382169368968" ignored="false" />
-    <file path="/MyActivity.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1383302573929" ignored="false" />
-    <file path="/Android.mk" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382389752245" ignored="false" />
-    <file path="/Application.mk" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382176046334" ignored="false" />
-    <file path="/test2.js" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382179046325" ignored="false" />
-    <file path="/test.js" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382253756933" ignored="false" />
-    <file path="/index.js" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382253364358" ignored="false" />
-    <file path="/Dummy.txt" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382183408455" ignored="false" />
-    <file path="/a.dummy" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382987970979" ignored="false" />
-    <file path="/ownGapCanvas.js" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382257001425" ignored="false" />
-    <file path="/FastCanvasJNI.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382185516775" ignored="false" />
-    <file path="/FastCanvasTextureDimension.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382261287771" ignored="false" />
-    <file path="/FastCanvasView.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1383297850065" ignored="false" />
-    <file path="/FastCanvasRenderer.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1383299646357" ignored="false" />
-    <file path="/FastCanvasTexture.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382261109550" ignored="false" />
-    <file path="/owngap.cpp" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382188628198" ignored="false" />
-    <file path="/fragment.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382868060576" ignored="false" />
-    <file path="/OuyaController.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1382383570796" ignored="false" />
-    <file path="/OController.java" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1383293632208" ignored="false" />
-    <file path="/AndroidManifest.xml" changelist="9357e80b-631e-46e6-8159-c169c16bcc25" time="1383075011645" ignored="false" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -110,7 +93,7 @@
       <file leaf-file-name="owngap.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jni/owngap.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="410" column="0" selection-start="13660" selection-end="13660" vertical-scroll-proportion="0.0">
+            <state line="569" column="48" selection-start="19235" selection-end="19235" vertical-scroll-proportion="-2.9454546" vertical-offset="9511" max-vertical-offset="12308">
               <folding />
             </state>
           </provider>
@@ -119,7 +102,7 @@
       <file leaf-file-name="Canvas.cpp" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jni/Canvas.cpp">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="200" column="31" selection-start="4587" selection-end="4587" vertical-scroll-proportion="0.0">
+            <state line="200" column="31" selection-start="4587" selection-end="4587" vertical-scroll-proportion="0.0" vertical-offset="3400" max-vertical-offset="18343">
               <folding />
             </state>
           </provider>
@@ -128,10 +111,8 @@
       <file leaf-file-name="Canvas.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jni/Canvas.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="0" selection-start="1098" selection-end="1098" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="n#!!doc" expanded="true" />
-              </folding>
+            <state line="40" column="0" selection-start="1098" selection-end="1098" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="7786">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -139,7 +120,7 @@
       <file leaf-file-name="owngap.h" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/jni/owngap.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="40" column="30" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0">
+            <state line="40" column="30" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1054">
               <folding />
             </state>
           </provider>
@@ -148,48 +129,34 @@
       <file leaf-file-name="OController.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/OController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="55" selection-start="1825" selection-end="1825" vertical-scroll-proportion="0.0">
+            <state line="0" column="27" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2414">
               <folding>
-                <element signature="e#635#1284#0" expanded="true" />
-                <element signature="e#1279#1280#0" expanded="true" />
-                <element signature="e#1318#1524#0" expanded="true" />
-                <element signature="e#1519#1520#0" expanded="true" />
+                <element signature="e#1980#3883#0" expanded="true" />
+                <element signature="e#3878#3879#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OwnGapActivity.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="OwnGapActivity.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/OwnGapActivity.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="0" selection-start="745" selection-end="745" vertical-scroll-proportion="0.730659">
+            <state line="33" column="34" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5661">
               <folding>
-                <element signature="e#545#563#0" expanded="true" />
-                <element signature="e#632#654#0" expanded="true" />
-                <element signature="e#1025#1403#0" expanded="true" />
-                <element signature="e#1387#1388#0" expanded="true" />
-                <element signature="e#1451#1590#0" expanded="true" />
-                <element signature="e#1585#1586#0" expanded="true" />
-                <element signature="e#2163#2346#0" expanded="true" />
-                <element signature="e#2340#2341#0" expanded="true" />
+                <element signature="e#1425#1628#0" expanded="true" />
+                <element signature="e#1617#1618#0" expanded="true" />
+                <element signature="e#1659#2156#0" expanded="true" />
+                <element signature="e#2134#2135#0" expanded="true" />
+                <element signature="e#5617#5634#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.js" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/assets/lib/game/main.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="8" column="43" selection-start="293" selection-end="293" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FastCanvasView.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="FastCanvasView.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasView.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="64" column="4" selection-start="1831" selection-end="1831" vertical-scroll-proportion="0.0">
+            <state line="90" column="10" selection-start="2854" selection-end="2854" vertical-scroll-proportion="0.6379691" vertical-offset="816" max-vertical-offset="2023">
               <folding />
             </state>
           </provider>
@@ -198,7 +165,29 @@
       <file leaf-file-name="FastCanvasRenderer.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasRenderer.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="70" column="38" selection-start="2421" selection-end="2421" vertical-scroll-proportion="0.0">
+            <state line="39" column="30" selection-start="1274" selection-end="1274" vertical-scroll-proportion="-7.418182" vertical-offset="255" max-vertical-offset="2550">
+              <folding>
+                <element signature="n#!!doc" expanded="true" />
+                <element signature="imports" expanded="true" />
+                <element signature="e#1706#1714#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FastCanvasTexture.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasTexture.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="16" column="27" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FastCanvasTextureDimension.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasTextureDimension.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="19" column="13" selection-start="664" selection-end="664" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
               <folding />
             </state>
           </provider>
@@ -222,22 +211,24 @@
         <option value="$PROJECT_DIR$/jni/Canvas.cpp" />
         <option value="$PROJECT_DIR$/AndroidManifest.xml" />
         <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/MyActivity.java" />
-        <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/OController.java" />
         <option value="$PROJECT_DIR$/jni/Android.mk" />
         <option value="$PROJECT_DIR$/jni/Canvas.h" />
         <option value="$PROJECT_DIR$/jni/owngap.h" />
+        <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasRenderer.java" />
+        <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasTextureDimension.java" />
+        <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasTexture.java" />
+        <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/OController.java" />
+        <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/OwnGapActivity.java" />
         <option value="$PROJECT_DIR$/jni/owngap.cpp" />
         <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasView.java" />
-        <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasRenderer.java" />
-        <option value="$PROJECT_DIR$/src/org/walawala/OwnGap/OwnGapActivity.java" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
-    <option name="width" value="1616" />
-    <option name="height" value="876" />
+    <option name="width" value="1696" />
+    <option name="height" value="1026" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="false">
     <OptionsSetting value="true" id="Add" />
@@ -357,7 +348,7 @@
     <property name="recentsLimit" value="5" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="GenerateAntBuildDialog.generateSingleFile" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/ouya-sdk.jar!/" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="v8test3" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
@@ -371,14 +362,15 @@
     <property name="AndroidLayoutSelectedEditor" value="android-designer" />
     <property name="project.structure.side.proportion" value="0.0" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
-    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="192.168.178.60:5555" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_SERIALS" value="4107b815f105cf75" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="options.searchVisible" value="true" />
+    <property name="ANDROID_EXTENDED_DEVICE_CHOOSER_AVD" value="4.4" />
   </component>
   <component name="RunManager" selected="Android Application.v8Test3">
-    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin" singleton="true">
       <module name="" />
       <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m" />
       <option name="PROGRAM_PARAMETERS" />
@@ -392,6 +384,7 @@
       <option name="CLASS_NAME" value="" />
       <option name="PACKAGE_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -400,6 +393,7 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -408,6 +402,19 @@
       <option name="SHMEM_ADDRESS" value="javadebug" />
       <option name="HOST" value="localhost" />
       <option name="PORT" value="5005" />
+      <method />
+    </configuration>
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <module name="" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="HTML_FILE_NAME" />
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <option name="VM_PARAMETERS" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
     <configuration default="true" type="TestNG" factoryName="TestNG">
@@ -437,19 +444,6 @@
       <listeners />
       <method />
     </configuration>
-    <configuration default="true" type="Applet" factoryName="Applet">
-      <module name="" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="HTML_FILE_NAME" />
-      <option name="HTML_USED" value="false" />
-      <option name="WIDTH" value="400" />
-      <option name="HEIGHT" value="300" />
-      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
-      <option name="VM_PARAMETERS" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <method />
-    </configuration>
     <configuration default="true" type="Application" factoryName="Application">
       <option name="MAIN_CLASS_NAME" />
       <option name="VM_PARAMETERS" />
@@ -462,9 +456,6 @@
       <option name="PASS_PARENT_ENVS" value="true" />
       <module name="" />
       <envs />
-      <method />
-    </configuration>
-    <configuration default="true" type="CppRunConfigurationType" factoryName="Cpp">
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -492,7 +483,9 @@
       <option name="ACTIVITY_CLASS" value="" />
       <option name="MODE" value="default_activity" />
       <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="EMULATOR" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -501,6 +494,7 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <method />
     </configuration>
     <configuration default="false" name="v8Test3" type="AndroidRunConfigurationType" factoryName="Android Application">
@@ -508,7 +502,9 @@
       <option name="ACTIVITY_CLASS" value="org.walawala.OwnGap.OwnGapActivity" />
       <option name="MODE" value="specific_activity" />
       <option name="DEPLOY" value="true" />
+      <option name="ARTIFACT_NAME" value="" />
       <option name="TARGET_SELECTION_MODE" value="SHOW_DIALOG" />
+      <option name="USE_LAST_SELECTED_DEVICE" value="false" />
       <option name="PREFERRED_AVD" value="" />
       <option name="USE_COMMAND_LINE" value="true" />
       <option name="COMMAND_LINE" value="" />
@@ -517,6 +513,7 @@
       <option name="NETWORK_SPEED" value="full" />
       <option name="NETWORK_LATENCY" value="none" />
       <option name="CLEAR_LOGCAT" value="false" />
+      <option name="SHOW_LOGCAT_AUTOMATICALLY" value="true" />
       <RunnerSettings RunnerId="AndroidDebugRunner" />
       <ConfigurationWrapper RunnerId="AndroidDebugRunner" />
       <method />
@@ -576,90 +573,49 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1696" height="1026" extended-state="6" />
     <editor active="true" />
     <layout>
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.61002785" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.61002785" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3551532" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.52089137" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32729805" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.44289693" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Build Variants" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="true" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32700893" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Android" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.4419643" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3286908" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24967825" sideWeight="0.55710304" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32729805" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.61002785" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24908425" sideWeight="0.55710304" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32700893" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32947233" sideWeight="0.61002785" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32729805" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
+  <component name="Vcs.Log.UiProperties">
+    <option name="RECENTLY_FILTERED_USERS">
+      <collection />
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="VcsManagerConfiguration">
-    <option name="OFFER_MOVE_TO_ANOTHER_CHANGELIST_ON_PARTIAL_COMMIT" value="true" />
-    <option name="CHECK_CODE_SMELLS_BEFORE_PROJECT_COMMIT" value="true" />
-    <option name="CHECK_NEW_TODO" value="true" />
     <option name="myTodoPanelSettings">
-      <value>
-        <are-packages-shown value="false" />
-        <are-modules-shown value="false" />
-        <flatten-packages value="false" />
-        <is-autoscroll-to-source value="false" />
-      </value>
+      <TodoPanelSettings />
     </option>
-    <option name="PERFORM_UPDATE_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_COMMIT_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_EDIT_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_CHECKOUT_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_ADD_REMOVE_IN_BACKGROUND" value="true" />
-    <option name="PERFORM_ROLLBACK_IN_BACKGROUND" value="false" />
-    <option name="CHECK_LOCALLY_CHANGED_CONFLICTS_IN_BACKGROUND" value="false" />
-    <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
-    <option name="SHOW_ONLY_CHANGED_IN_SELECTION_DIFF" value="true" />
-    <option name="CHECK_COMMIT_MESSAGE_SPELLING" value="true" />
-    <option name="DEFAULT_PATCH_EXTENSION" value="patch" />
-    <option name="SHORT_DIFF_HORIZONTALLY" value="true" />
-    <option name="SHORT_DIFF_EXTRA_LINES" value="2" />
-    <option name="SOFT_WRAPS_IN_SHORT_DIFF" value="true" />
-    <option name="INCLUDE_TEXT_INTO_PATCH" value="false" />
-    <option name="INCLUDE_TEXT_INTO_SHELF" value="false" />
-    <option name="SHOW_FILE_HISTORY_DETAILS" value="true" />
-    <option name="SHOW_VCS_ERROR_NOTIFICATIONS" value="true" />
-    <option name="SHOW_DIRTY_RECURSIVELY" value="false" />
-    <option name="LIMIT_HISTORY" value="true" />
-    <option name="MAXIMUM_HISTORY_ROWS" value="1000" />
-    <option name="UPDATE_FILTER_SCOPE_NAME" />
-    <option name="USE_COMMIT_MESSAGE_MARGIN" value="false" />
-    <option name="COMMIT_MESSAGE_MARGIN_SIZE" value="72" />
-    <option name="WRAP_WHEN_TYPING_REACHES_RIGHT_MARGIN" value="false" />
-    <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" />
-    <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="false" />
-    <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
-    <option name="REFORMAT_BEFORE_PROJECT_COMMIT" value="false" />
-    <option name="REFORMAT_BEFORE_FILE_COMMIT" value="false" />
-    <option name="FILE_HISTORY_DIALOG_COMMENTS_SPLITTER_PROPORTION" value="0.8" />
-    <option name="FILE_HISTORY_DIALOG_SPLITTER_PROPORTION" value="0.5" />
-    <option name="ACTIVE_VCS_NAME" />
-    <option name="UPDATE_GROUP_BY_PACKAGES" value="false" />
-    <option name="UPDATE_GROUP_BY_CHANGELIST" value="false" />
-    <option name="UPDATE_FILTER_BY_SCOPE" value="false" />
-    <option name="SHOW_FILE_HISTORY_AS_TREE" value="false" />
-    <option name="FILE_HISTORY_SPLITTER_PROPORTION" value="0.6" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -671,133 +627,194 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="jar://$PROJECT_DIR$/../../Android/adt-bundle-windows-x86_64-20130514/sdk/platforms/android-15/android.jar!/java/util/LinkedList.class">
+    <entry file="file://$PROJECT_DIR$/jni/owngap.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="13" column="19" selection-start="556" selection-end="556" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../Android/adt-bundle-windows-x86_64-20130514/sdk/platforms/android-15/android.jar!/android/media/SoundPool.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="46" column="13" selection-start="1537" selection-end="1537" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jni/lodepng.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1706" column="0" selection-start="78556" selection-end="78556" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jni/Application.mk">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/jni/Android.mk">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="6" column="25" selection-start="148" selection-end="148" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2" column="32" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://$PROJECT_DIR$/../../Android/adt-bundle-windows-x86_64-20130514/sdk/platforms/android-15/android.jar!/android/content/ContextWrapper.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="160" column="0" selection-start="8784" selection-end="8784" vertical-scroll-proportion="0.759434">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/lib/game/main.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="8" column="43" selection-start="293" selection-end="293" vertical-scroll-proportion="0.0">
+        <state line="410" column="0" selection-start="12616" selection-end="12616" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="12308">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jni/Canvas.cpp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="200" column="31" selection-start="4587" selection-end="4587" vertical-scroll-proportion="0.0">
+        <state line="200" column="31" selection-start="4587" selection-end="4587" vertical-scroll-proportion="0.0" vertical-offset="3400" max-vertical-offset="18343">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jni/Canvas.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="0" selection-start="1098" selection-end="1098" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="n#!!doc" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/OController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="55" selection-start="1825" selection-end="1825" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="e#635#1284#0" expanded="true" />
-            <element signature="e#1279#1280#0" expanded="true" />
-            <element signature="e#1318#1524#0" expanded="true" />
-            <element signature="e#1519#1520#0" expanded="true" />
-          </folding>
+        <state line="40" column="0" selection-start="1098" selection-end="1098" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="7786">
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/jni/owngap.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="40" column="30" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0">
+        <state line="40" column="30" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0" vertical-offset="680" max-vertical-offset="1054">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/jni/owngap.cpp">
+    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/OController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="410" column="0" selection-start="13660" selection-end="13660" vertical-scroll-proportion="0.0">
+        <state line="54" column="55" selection-start="2041" selection-end="2041" vertical-scroll-proportion="0.0" vertical-offset="918" max-vertical-offset="2584">
+          <folding>
+            <element signature="e#1980#3883#0" expanded="true" />
+            <element signature="e#3878#3879#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/OwnGapActivity.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="24" column="0" selection-start="706" selection-end="706" vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="5185">
+          <folding>
+            <element signature="e#1425#1628#0" expanded="true" />
+            <element signature="e#1617#1618#0" expanded="true" />
+            <element signature="e#1659#2156#0" expanded="true" />
+            <element signature="e#2134#2135#0" expanded="true" />
+            <element signature="e#5617#5634#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="64" column="4" selection-start="2212" selection-end="2212" vertical-scroll-proportion="0.0" vertical-offset="1088" max-vertical-offset="2210">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasRenderer.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="70" column="38" selection-start="2421" selection-end="2421" vertical-scroll-proportion="0.0">
+        <state line="70" column="38" selection-start="2421" selection-end="2421" vertical-scroll-proportion="0.0" vertical-offset="1190" max-vertical-offset="2448">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1706#1714#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Android/adt-bundle-windows-x86_64-20130514/sdk/platforms/android-15/android.jar!/java/util/LinkedList.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="13" column="19" selection-start="556" selection-end="556" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Android/adt-bundle-windows-x86_64-20130514/sdk/platforms/android-15/android.jar!/android/media/SoundPool.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="46" column="13" selection-start="1537" selection-end="1537" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jni/lodepng.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="1706" column="0" selection-start="78556" selection-end="78556" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasView.java">
+    <entry file="file://$PROJECT_DIR$/jni/Application.mk">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="64" column="4" selection-start="1831" selection-end="1831" vertical-scroll-proportion="0.0">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jni/Android.mk">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="6" column="25" selection-start="148" selection-end="148" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AndroidManifest.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="2" column="32" selection-start="134" selection-end="134" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$PROJECT_DIR$/../../Android/adt-bundle-windows-x86_64-20130514/sdk/platforms/android-15/android.jar!/android/content/ContextWrapper.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="160" column="0" selection-start="8784" selection-end="8784" vertical-scroll-proportion="0.759434" vertical-offset="0" max-vertical-offset="0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jni/Canvas.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="200" column="31" selection-start="4587" selection-end="4587" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jni/Canvas.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="0" selection-start="1098" selection-end="1098" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jni/owngap.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="40" column="30" selection-start="1043" selection-end="1043" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasRenderer.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="39" column="30" selection-start="1274" selection-end="1274" vertical-scroll-proportion="-7.418182" vertical-offset="255" max-vertical-offset="2550">
+          <folding>
+            <element signature="n#!!doc" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="e#1706#1714#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasTexture.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="16" column="27" selection-start="603" selection-end="603" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="374">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasTextureDimension.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="19" column="13" selection-start="664" selection-end="664" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="357">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/OController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="27" selection-start="27" selection-end="27" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2414">
+          <folding>
+            <element signature="e#1980#3883#0" expanded="true" />
+            <element signature="e#3878#3879#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/jni/owngap.cpp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="569" column="48" selection-start="19235" selection-end="19235" vertical-scroll-proportion="-2.9454546" vertical-offset="9511" max-vertical-offset="12308">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/OwnGapActivity.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="0" selection-start="745" selection-end="745" vertical-scroll-proportion="0.730659">
+        <state line="33" column="34" selection-start="1082" selection-end="1082" vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="5661">
           <folding>
-            <element signature="e#545#563#0" expanded="true" />
-            <element signature="e#632#654#0" expanded="true" />
-            <element signature="e#1025#1403#0" expanded="true" />
-            <element signature="e#1387#1388#0" expanded="true" />
-            <element signature="e#1451#1590#0" expanded="true" />
-            <element signature="e#1585#1586#0" expanded="true" />
-            <element signature="e#2163#2346#0" expanded="true" />
-            <element signature="e#2340#2341#0" expanded="true" />
+            <element signature="e#1425#1628#0" expanded="true" />
+            <element signature="e#1617#1618#0" expanded="true" />
+            <element signature="e#1659#2156#0" expanded="true" />
+            <element signature="e#2134#2135#0" expanded="true" />
+            <element signature="e#5617#5634#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/walawala/OwnGap/FastCanvasView.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="90" column="10" selection-start="2854" selection-end="2854" vertical-scroll-proportion="0.6379691" vertical-offset="816" max-vertical-offset="2023">
+          <folding />
         </state>
       </provider>
     </entry>

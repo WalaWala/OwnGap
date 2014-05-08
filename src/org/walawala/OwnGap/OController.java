@@ -1,6 +1,7 @@
 package org.walawala.OwnGap;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
 import android.view.View;
@@ -98,13 +99,14 @@ public class OController {
 				return true;
 			}
 		});
-		surfaceView.setOnTouchListener(new View.OnTouchListener() {
+		/*surfaceView.setOnTouchListener(new View.OnTouchListener() {
 			@Override
-			public boolean onTouch(View view, MotionEvent motionEvent) {
+			public boolean onTouch(View view, MotionEvent event) {
 				// todo: touch events
+
 				return true;
 			}
-		});
+		});*/
 	}
 
 	public void ShowCursor(boolean showCursor) {

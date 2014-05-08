@@ -36,34 +36,37 @@ public class OwnGapActivity extends Activity {
 	private Thread scriptThread;
 
 	private void startScriptAndStuff() {
-		fastCanvasView = new FastCanvasView(this);
-		controller = new OController(fastCanvasView, this);
-		soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 0);
+        fastCanvasView = new FastCanvasView(OwnGapActivity.this);
+        controller = new OController(fastCanvasView, OwnGapActivity.this);
+        soundPool = new SoundPool(20, AudioManager.STREAM_MUSIC, 0);
 		SetJavaFunctions(this);
 
-		this.runOnUiThread(new Runnable() {
-			@Override
-			public void run() {
-				final RelativeLayout top = new RelativeLayout(OwnGapActivity.this);
-				top.setLayoutParams(new RelativeLayout.LayoutParams(
-						RelativeLayout.LayoutParams.MATCH_PARENT,
-						RelativeLayout.LayoutParams.MATCH_PARENT));
-				top.addView(fastCanvasView);
-				OwnGapActivity.this.setContentView(top);
 
-			} // end run
-		}); // end runnable
+        scriptThread = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                Init(OwnGapActivity.this.getAssets(), "ownGap/index.js");
 
-		scriptThread = new Thread(new Runnable() {
-			@Override
-			public void run() {
-				Init(OwnGapActivity.this.getAssets(), "ownGap/index.js");
+                enterEventLoop();
+            }
+        });
 
-				enterEventLoop();
-			}
-		});
+        this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
 
-		scriptThread.start();
+                final RelativeLayout top = new RelativeLayout(OwnGapActivity.this);
+                top.setLayoutParams(new RelativeLayout.LayoutParams(
+                        RelativeLayout.LayoutParams.MATCH_PARENT,
+                        RelativeLayout.LayoutParams.MATCH_PARENT));
+                top.addView(fastCanvasView);
+                OwnGapActivity.this.setContentView(top);
+
+
+            } // end run
+        }); // end runnable
+
+        scriptThread.start();
 
 	}
 
@@ -109,9 +112,20 @@ public class OwnGapActivity extends Activity {
 		//this.finish();
 	}
 
-	public boolean IsPaused() {
-		return this.paused;
-	}
+    public boolean IsPaused() {
+        return this.paused;
+    }
+
+    public void RequestAnimationFrame() {
+        requestAnimationFrame();
+        /*this.runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                if (isInited) {
+                }
+            }
+        });*/
+    }
 
 	public int LoadSound(String path) {
 		try {
@@ -201,7 +215,7 @@ public class OwnGapActivity extends Activity {
 		controller.ShowCursor(showCursor);
 	}
 
-	private HashMap<Integer, String> httpResponses = new HashMap<Integer, String>();
+	private final HashMap<Integer, String> httpResponses = new HashMap<Integer, String>();
 	int currentRequestId = 0;
 	public int MakeHttpRequest(final String targetUrl, final String method, final String parameters) {
 		final int thatId = currentRequestId + 1;
@@ -241,10 +255,14 @@ public class OwnGapActivity extends Activity {
 						response.append('\r');
 					}
 					rd.close();
-					httpResponses.put(thatId, response.toString());
+					synchronized (httpResponses) {
+						httpResponses.put(thatId, response.toString());
+					}
 				} catch (Exception e) {
 					e.printStackTrace();
-					httpResponses.put(thatId, "<Error>");
+					synchronized (httpResponses) {
+						httpResponses.put(thatId, "<Error>");
+					}
 				} finally {
 					if(connection != null) {
 						connection.disconnect();
@@ -272,8 +290,12 @@ public class OwnGapActivity extends Activity {
 	}
 
 	public String GetHttpResponse(int id) {
-		if (httpResponses.containsKey(id)) {
-			return httpResponses.get(id);
+		synchronized (httpResponses) {
+			if (httpResponses.containsKey(id)) {
+				String response = httpResponses.get(id);
+				httpResponses.remove(id);
+				return response;
+			}
 		}
 		return "<No Response>";
 	}
@@ -324,10 +346,12 @@ public class OwnGapActivity extends Activity {
 	public static native void addTexture(int id, int glID, int width, int height); // id's must be from 0 to numTextures-1
 	public static native void removeTexture(int id); // id must have been passed to addTexture in the past
 	public static native int loadImage(String imagePath);
-	public static native void render();
+    public static native void render();
+    public static native void requestAnimationFrame();
 	public static native void enterEventLoop();
 	public static native void initCanvas();
 	public static native void surfaceChanged( int width, int height );
+	public static native void touchEvent(float x, float y, int index, int action, int screenWidth, int screenHeight);
 	public static native void contextLost(); // Deletes native memory associated with lost GL context
 	public static native void release(); // Deletes native canvas
 }

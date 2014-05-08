@@ -80,6 +80,7 @@ var console = {
 
 var isActivityPaused = false;
 function shouldExit() {
+    //callIdle();
 	return false;
 }
 
@@ -216,6 +217,9 @@ function prompt() {}
 var keyDownEvents = [];
 var keyPressEvents = [];
 var keyUpEvents = [];
+var touchStartEvents = [];
+var touchEndEvents = [];
+var touchMoveEvents = [];
 window.addEventListener = function (evt, fn, capture) {
 	if (evt === "load") {
 		readyEvents.push(fn);
@@ -225,7 +229,13 @@ window.addEventListener = function (evt, fn, capture) {
 		keyPressEvents.push(fn);
 	} else if (evt === "keyup") {
 		keyUpEvents.push(fn);
-	}
+	} else if (evt === "touchstart") {
+    	touchStartEvents.push(fn);
+	} else if (evt === "touchend") {
+     	touchEndEvents.push(fn);
+    } else if (evt === "touchmove") {
+    	touchMoveEvents.push(fn);
+    }
 };
 document.addEventListener = function (evt, fn, capture) {
 	if (evt === "DOMContentLoaded") {
@@ -263,6 +273,18 @@ document.removeEventListener = function (evt, fn, capture) {
 			readyEvents.splice(index, 1);
 		}
 	}
+	if (evt === "touchstart") {
+		var index = touchStartEvents.indexOf(fn);
+    	touchStartEvents.splice(index, 1);
+    }
+    if (evt === "touchend") {
+		var index = touchEndEvents.indexOf(fn);
+    	touchEndEvents.splice(index, 1);
+    }
+    if (evt === "touchmove") {
+		var index = touchMoveEvents.indexOf(fn);
+      	touchMoveEvents.splice(index, 1);
+    }
 };
 
 window.removeEventListener = function (evt, fn, capture) {
@@ -307,9 +329,71 @@ setInterval(function () {
 	isActivityPaused = isPaused();
 }, 500);
 
+var rendersDebug = 0;
+
+function requestAnimationFrameOwnGap() {
+    if (requestAnimationFrame.func) {
+        requestAnimationFrame.func(requestAnimationFrame.lastRun);
+    }
+    requestAnimationFrame.lastRun = getTimestamp();
+	window.ownGapCanvas.render();
+	++rendersDebug;
+}
+
+var requestAnimationFrame = function (func) {
+    requestAnimationFrame.func = func;
+    log("rendering...");
+    requestAnimationFrame.lastRun = getTimestamp();
+};
+
+function touchEventOwnGap(x, y, index, action, screenWidth, screenHeight) {
+	//log("X: " + x + ", Y:" + y + ", index: " + index + ", action: " + action);
+	/*ACTION_DOWN = 0;
+      ACTION_UP = 1;
+      ACTION_MOVE = 2; */
+    var evt = {};
+    evt.identifier = index;
+    // do some math for current set ortho resolution
+    x = parseInt(x);
+    y = parseInt(y);
+
+    var ratioX = window.ownGapCanvas.width / screenWidth;
+    var ratioY = window.ownGapCanvas.height / screenHeight;
+    var calcX = parseInt(x * ratioX);
+    var calcY = parseInt(y * ratioY);
+    evt.screenX = calcX;
+    evt.screenY = calcY;
+    evt.clientX = calcX;
+    evt.clientY = calcY;
+    evt.pageX = calcX;
+    evt.pageY = calcY;
+    evt.canvasWidth = window.ownGapCanvas.width;
+    evt.canvasHeight = window.ownGapCanvas.height;
+
+	var evtList;
+	switch (action) {
+		case 0: // down
+			evt.type = "touchstart";
+			evtList = touchStartEvents;
+			break;
+		case 1: // up
+			evt.type = "touchup";
+			evtList = touchUpEvents;
+			break;
+		case 2: // move
+			evt.type = "touchmove";
+			evtList = touchMoveEvents;
+			break;
+	}
+	for (var i in evtList) {
+		evtList[i](evt);
+	}
+
+//	console.log(JSON.stringify(evt));
+}
 
 function tick() {
-	while (!shouldExit()) {
+	//while (!shouldExit()) {
 		if (!isActivityPaused) {
 			currentTime = getTimestamp();
 			for (l = 0; l < _timer.length; ++l) {
@@ -326,13 +410,14 @@ function tick() {
 			++eventloopLoops;
 			if (currentTime-lastLoop >= 2000) {
 				if (printStats) {
-					log("eventloopLoops: " + parseInt(eventloopLoops/2) + ", timerLength: " + _timer.length);
+					log("eventloopLoops: " + parseInt(eventloopLoops/2) + ", timerLength: " + _timer.length + ", renders: " + rendersDebug);
 				}
+
 				eventloopLoops = 0;
+				rendersDebug = 0;
 				if (secondsSinceReset >= 10) {
 					// whatever, better check timer script, but for now...
-					console.log("GC!");
-					//callIdle(); // gc
+                    console.log("GC!");
 					secondsSinceReset = 0;
 					var tmptimer = [];
 					for (l = 0; l < _timer.length; ++l) {
@@ -345,7 +430,6 @@ function tick() {
 				++secondsSinceReset;
 				lastLoop = getTimestamp();
 			}
-			window.ownGapCanvas.render();
 		} else {
 			if (!isPaused()) {
 				isActivityPaused = false;
@@ -355,7 +439,7 @@ function tick() {
 				}
 			}
 		}
-	}
+	//}
 }
 registerTick();
 

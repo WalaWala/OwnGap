@@ -27,6 +27,7 @@ import javax.microedition.khronos.egl.EGLConfig;
 import javax.microedition.khronos.opengles.GL10;
 
 //import android.content.res.Resources;
+import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.opengl.GLES10;
@@ -36,14 +37,18 @@ import android.util.Log;
 
 public class FastCanvasRenderer implements GLSurfaceView.Renderer {
 	// ==========================================================================
-	public FastCanvasRenderer(FastCanvasView view) {
+	public FastCanvasRenderer(FastCanvasView view, Context context) {
 		super();
+
+        activity = (OwnGapActivity)context;
+
 		mView = view;
 	}
 
 	// ==========================================================================
 	public String mRenderCommands;
 	private FastCanvasView mView;
+    private OwnGapActivity activity;
 	public int width;
 	public int height;
 	public boolean alreadyOrthoSet = true;
@@ -86,7 +91,8 @@ public class FastCanvasRenderer implements GLSurfaceView.Renderer {
 	public void onDrawFrame(GL10 gl) {
 		if (!mView.isPaused) {
 			flushQueue();
-			OwnGapActivity.render();
+            activity.RequestAnimationFrame();
+            OwnGapActivity.render();
 			checkError();
 		}
 	}

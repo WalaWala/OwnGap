@@ -70,7 +70,7 @@ void LoadFile(const char* fileName) {
 	TryCatch try_catch;
 
 	// Compile the source code.
-	Handle<Script> script = Script::Compile(source);
+	Handle<Script> script = Script::Compile(source, String::New(fileName));
 
 	free(buf);
 
@@ -96,6 +96,7 @@ char *getChar(Local<Value> value, const char *fallback = "") {
 }
 
 static void SetOrtho(const v8::FunctionCallbackInfo<v8::Value>& args) {
+	//Locker v8Locker(isolate);
 	//Locker locker(isolate);
 	HandleScope handle_scope(isolate);
 	Local<Int32> width = args[0]->ToInt32();
@@ -135,10 +136,11 @@ int LoadImage(const char* path)
 
 static void IsImageLoaded(const v8::FunctionCallbackInfo<v8::Value>& args)
 {
+	//Locker v8Locker(isolate);
 	//Locker locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
-	Unlocker unlocker(isolate);
+	//Unlocker unlocker(isolate);
 	vm->AttachCurrentThread(&env, NULL);
 	int width = env->CallIntMethod(jniObj, getImageWidthJava, args[0]->ToInt32()->Value());
 	//LOGD("IsImageLoaded: %d image: %d", width, args[0]->ToInt32()->Value());
@@ -147,6 +149,7 @@ static void IsImageLoaded(const v8::FunctionCallbackInfo<v8::Value>& args)
 
 static void AddPngTexture(const v8::FunctionCallbackInfo<v8::Value>& args)
 {
+	//Locker v8Locker(isolate);
 	//Locker locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
@@ -163,6 +166,7 @@ static void AddPngTexture(const v8::FunctionCallbackInfo<v8::Value>& args)
 }
 
 static void GetTextureWidth(const v8::FunctionCallbackInfo<v8::Value>& args) {
+	//Locker v8Locker(isolate);
 	//Locker locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
@@ -176,6 +180,7 @@ static void GetTextureWidth(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
 
 static void GetTextureHeight(const v8::FunctionCallbackInfo<v8::Value>& args) {
+	//Locker v8Locker(isolate);
 	//Locker locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
@@ -189,6 +194,7 @@ static void GetTextureHeight(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
 
 static void Render(const v8::FunctionCallbackInfo<v8::Value>& args) {
+	//Locker v8locker(isolate);
 	//Locker locker(isolate);
 	HandleScope handle_scope(isolate);
 	if (args.Length() == 0) {
@@ -201,11 +207,11 @@ static void Render(const v8::FunctionCallbackInfo<v8::Value>& args) {
     	if (arg0.length() > 0) {
     		theCanvas->Render(*arg0, arg0.length());
     	}
-
 	}
 }
 
 static void Load(const v8::FunctionCallbackInfo<v8::Value>& args) {
+    //Locker v8Locker(isolate);
 	for (int i = 0; i < args.Length(); i++) {
 		//Locker locker(isolate);
 		HandleScope handle_scope(isolate);
@@ -221,6 +227,7 @@ uint currentTimeInMilliseconds()
 }
 
 static void GetTimestamp(const v8::FunctionCallbackInfo<v8::Value>& args) {
+	//Locker v8locker(isolate);
 	//Locker locker(isolate);
 	HandleScope handle_scope(isolate);
 	Local<Integer> lval = Integer::NewFromUnsigned(currentTimeInMilliseconds());
@@ -228,6 +235,7 @@ static void GetTimestamp(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
 
 static void Print(const v8::FunctionCallbackInfo<v8::Value>& args) {
+	//Locker v8Locker(isolate);
 	//Locker locker(isolate);
 	HandleScope handle_scope(isolate);
 	String::Utf8Value arg0(args[0]);
@@ -235,6 +243,7 @@ static void Print(const v8::FunctionCallbackInfo<v8::Value>& args) {
 }
 
 static void SetBackgroundColor(const v8::FunctionCallbackInfo<v8::Value>& args) {
+	//Locker v8Locker(isolate);
 	HandleScope handle_scope(isolate);
 	Canvas *theCanvas = Canvas::GetCanvas();
     if (theCanvas) {
@@ -243,11 +252,20 @@ static void SetBackgroundColor(const v8::FunctionCallbackInfo<v8::Value>& args) 
 }
 
 static void CallIdle(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
+	//HandleScope handle_scope(isolate);
+    //while (!V8::IdleNotification(1000)) {}
+    usleep(0);
+}
+
+static void CallGC(const FunctionCallbackInfo<Value>& args) {
+	Locker v8Locker(isolate);
 	HandleScope handle_scope(isolate);
     while (!V8::IdleNotification(1000)) {}
 }
 
 static void GetButton(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -257,6 +275,7 @@ static void GetButton(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void GetAxis(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -266,6 +285,7 @@ static void GetAxis(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void GetKeys(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -292,6 +312,7 @@ static void GetKeys(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void ShowCursor(const FunctionCallbackInfo<Value>& args) {
+    //Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -299,28 +320,46 @@ static void ShowCursor(const FunctionCallbackInfo<Value>& args) {
 }
 
 void DispatchDebugMessages() {
+    Locker v8locker(isolate);
+    HandleScope handle_scope(isolate);
+
+    Local<Context> context_local = Local<Context>::New(isolate, context);
+    context_local->Enter();
 	Debug::ProcessDebugMessages();
 }
 
 void EventLoop() {
+	Locker v8Locker(isolate);
 	//Locker locker(isolate);
 	JNIEnv* env;
 	vm->AttachCurrentThread(&env, NULL);
-    //locker.StartPreemption(isolate, 10);
 	//LOGD("Started preemption!");
+    HandleScope handle_scope(isolate);
+    Local<Context> context_local = Local<Context>::New(isolate, context);
+    Local<Function> tick = Local<Function>::New(isolate, callbackFunction);
+	Local<String> requestAnimFrame_name = String::New("requestAnimationFrameOwnGap");
+	Handle<Value> requestAnimFrame_val = context_local->Global()->Get(requestAnimFrame_name);
+	if (!requestAnimFrame_val->IsFunction()) {
+		LOGD("requestAnimationFrameOwnGap is not a function!");
+		return;
+	}
+	Local<Function> requestAnimFrame_fun = Handle<Function>::Cast(requestAnimFrame_val);
 	while (true) {
-		HandleScope handle_scope(isolate);
-		Local<Context> context_local = Local<Context>::New(isolate, context);
-		Local<Function> tick = Local<Function>::New(isolate, callbackFunction);
-		Local<Integer> lval = Integer::NewFromUnsigned(currentTimeInMilliseconds());
-		Local<Value> args[] = { lval };
-		TryCatch try_catch;
-		Local<Value> result = tick->Call(context_local->Global(), 1, args);
-		ReportException(isolate, &try_catch);
+	    sleep(0);
+		Locker v8Locker(isolate);
+		Local<Value> args[] = { };
+		Local<Value> result = tick->Call(context_local->Global(), 0, args);
+		if (renderNow) {
+			Local<Value> args[] = { };
+			Local<Value> result = requestAnimFrame_fun->Call(context_local->Global(), 0, args);
+			renderNow = false;
+		}
+		Unlocker unlocker(isolate);
     }
 }
 
 static void PlaySound(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -330,6 +369,7 @@ static void PlaySound(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void GetSoundLoaded(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -340,6 +380,7 @@ static void GetSoundLoaded(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void SetVolume(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -347,6 +388,7 @@ static void SetVolume(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void StopSound(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -354,6 +396,7 @@ static void StopSound(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void LoadSound(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -365,6 +408,7 @@ static void LoadSound(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void MakeHttpRequest(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -380,6 +424,7 @@ static void MakeHttpRequest(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void GetHttpResponse(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -388,9 +433,11 @@ static void GetHttpResponse(const FunctionCallbackInfo<Value>& args) {
 
 	args.GetReturnValue().Set(String::New(nativeString));
 	env->ReleaseStringUTFChars(response, nativeString);
+	env->DeleteLocalRef(response);
 }
 
 static void IsPaused(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -400,6 +447,7 @@ static void IsPaused(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void ShiftPressed(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -409,6 +457,7 @@ static void ShiftPressed(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void ShowKeyboard(const FunctionCallbackInfo<Value>& args) {
+	//Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -416,6 +465,7 @@ static void ShowKeyboard(const FunctionCallbackInfo<Value>& args) {
 }
 
 static void HideKeyboard(const FunctionCallbackInfo<Value>& args) {
+    //Locker v8Locker(isolate);
 	JNIEnv* env;
 	HandleScope handle_scope(isolate);
 	vm->AttachCurrentThread(&env, NULL);
@@ -434,11 +484,13 @@ static void RegisterTick(const FunctionCallbackInfo<v8::Value>&args) {
    	}
    	Handle<Function> tick_fun = Handle<Function>::Cast(tick_val);
    	callbackFunction.Reset(isolate, tick_fun);
+
 }
 
 Handle<Context> CreateContext(Isolate* isolate) {
 	// Create a template for the global object.
 	Handle<ObjectTemplate> global = ObjectTemplate::New();
+
 	global->Set(String::New("log"), FunctionTemplate::New(Print));
 	global->Set(String::New("registerTick"), FunctionTemplate::New(RegisterTick));
 	global->Set(String::New("getTimestamp"), FunctionTemplate::New(GetTimestamp));
@@ -451,6 +503,7 @@ Handle<Context> CreateContext(Isolate* isolate) {
 	global->Set(String::New("load"), FunctionTemplate::New(Load));
 	global->Set(String::New("isImageLoaded"), FunctionTemplate::New(IsImageLoaded));
 	global->Set(String::New("callIdle"), FunctionTemplate::New(CallIdle));
+	global->Set(String::New("callGC"), FunctionTemplate::New(CallGC));
 	global->Set(String::New("getButton"), FunctionTemplate::New(GetButton));
 	global->Set(String::New("getAxis"), FunctionTemplate::New(GetAxis));
 	global->Set(String::New("showCursor"), FunctionTemplate::New(ShowCursor));
@@ -475,10 +528,14 @@ Handle<Context> CreateContext(Isolate* isolate) {
 }
 
 extern "C" void Java_org_walawala_OwnGap_OwnGapActivity_render(JNIEnv *env, jobject jobj) {
-    Canvas *theCanvas = Canvas::GetCanvas();
+	Canvas *theCanvas = Canvas::GetCanvas();
     if (theCanvas) {
-		theCanvas->RenderInt();
+     	theCanvas->RenderInt();
     }
+}
+
+extern "C" void Java_org_walawala_OwnGap_OwnGapActivity_requestAnimationFrame(JNIEnv *env, jobject jobj) {
+	renderNow = true;
 }
 
 extern "C" void Java_org_walawala_OwnGap_OwnGapActivity_enterEventLoop(JNIEnv *env, jobject jobj) {
@@ -491,6 +548,29 @@ extern "C" void Java_org_walawala_OwnGap_OwnGapActivity_setOrtho(JNIEnv *env, jo
     	LOGD("Setting ortho: %i/%i", width, height);
 	    theCanvas->SetOrtho(width, height);
     }
+}
+
+extern "C" void Java_org_walawala_OwnGap_OwnGapActivity_touchEvent(JNIEnv *env, jobject jobj, jfloat x, jfloat y, jint index, jint action, jint width, jint height) {
+    Locker v8locker(isolate);
+	HandleScope handle_scope(isolate);
+
+	Local<Context> context_local = Local<Context>::New(isolate, context);
+	context_local->Enter();
+   	Local<String> touchEvent_name = String::New("touchEventOwnGap");
+	Handle<Value> touchEvent_val = context_local->Global()->Get(touchEvent_name);
+	if (!touchEvent_val->IsFunction()) {
+		LOGD("touchEventOwnGap is not a function!");
+		return;
+	}
+    Local<Function> touchEvent_fun = Handle<Function>::Cast(touchEvent_val);
+    Local<Number> xi = Number::New(x);
+    Local<Number> yi = Number::New(y);
+    Local<Integer> indexi = Integer::New(index);
+    Local<Integer> actioni = Integer::New(action);
+    Local<Integer> widthi = Integer::New(width);
+    Local<Integer> heighti = Integer::New(height);
+	Local<Value> args[] = { xi, yi, indexi, actioni, widthi, heighti };
+	Local<Value> result = touchEvent_fun->Call(context_local->Global(), 6, args);
 }
 
 extern "C" void Java_org_walawala_OwnGap_OwnGapActivity_surfaceChanged(JNIEnv *env, jobject jobj, jint width, jint height) {
@@ -613,13 +693,15 @@ extern "C" bool Java_org_walawala_OwnGap_OwnGapActivity_Init(JNIEnv *env, jobjec
 
 	v8::V8::Initialize();
 	isolate = v8::Isolate::GetCurrent();
+	Locker v8Locker(isolate);
 	v8::HandleScope handle_scope(isolate);
 	Handle<Context> context_handle = CreateContext(isolate);
 	context_handle->Enter();
 	context.Reset(isolate, context_handle);
+    Locker::StartPreemption(isolate, 5);
 
-	//Debug::SetDebugMessageDispatchHandler(DispatchDebugMessages, false);
-	//Debug::EnableAgent("OwnGap", 5858, false);
+	Debug::SetDebugMessageDispatchHandler(DispatchDebugMessages, false);
+	Debug::EnableAgent("OwnGap", 5858, false);
 
 	const char* relativepath;
 	relativepath = env->GetStringUTFChars(fileName, NULL);
@@ -633,5 +715,5 @@ extern "C" bool Java_org_walawala_OwnGap_OwnGapActivity_Init(JNIEnv *env, jobjec
 
 	env->ReleaseStringUTFChars(fileName, relativepath);
 
-   return true;
+    return true;
 }

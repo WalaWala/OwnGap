@@ -16,14 +16,12 @@
  */
 package org.walawala.OwnGap;
 
+import android.graphics.Point;
 import android.opengl.GLSurfaceView;
 import android.text.InputType;
 import android.util.Log;
-import android.view.KeyEvent;
-import android.view.MotionEvent;
-import android.view.SurfaceHolder;
+import android.view.*;
 import android.content.Context;
-import android.view.View;
 import android.view.inputmethod.BaseInputConnection;
 import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputConnection;
@@ -56,7 +54,7 @@ public class FastCanvasView extends GLSurfaceView {
 	public FastCanvasView(Context context) {
 		super(context);
 		this.setEGLConfigChooser( false );// turn off the depth buffer
-		mRenderer = new FastCanvasRenderer(this);
+		mRenderer = new FastCanvasRenderer(this, context);
 
 		this.setRenderer(mRenderer);
 		this.setRenderMode(RENDERMODE_CONTINUOUSLY);
@@ -79,6 +77,25 @@ public class FastCanvasView extends GLSurfaceView {
 	@Override
 	public boolean onTouchEvent (MotionEvent event) {
 		// todo!!!
+		final int index = event.getActionIndex();
+		final float x = event.getX(index);
+		final float y = event.getY(index);
+		final int action = event.getActionMasked();
+
+		Display display = ((OwnGapActivity)getContext()).getWindowManager().getDefaultDisplay();
+		Point size = new Point();
+		display.getSize(size);
+		final int width = size.x;
+		final int height = size.y;
+
+		//Log.i("CANVAS", "Touch event! x: " + x + ", y: " + y + ", action: " + action + ", index: " + index);
+
+		((OwnGapActivity)getContext()).runOnUiThread(new Runnable() {
+			@Override
+			public void run() {
+				OwnGapActivity.touchEvent(x, y, index, action, width, height);
+			}
+		});
 		return true;
 	}
 	
