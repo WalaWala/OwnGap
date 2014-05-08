@@ -17,9 +17,9 @@ TODO
 - [x] XMLHttpRequest
 - [x] Keyboard interaction
 - [x] Canvas image rotation/transformation/alpha 
-- [ ] Touch support (sooner or later)
+- [x] Touch support
+- [x] requestAnimationFrame support
 - [x] Add examples
-- [ ] Create a JAR from this thing
 - [ ] Much refactoring, currently this whole thing is a mess
 
 Licenses
