@@ -325,10 +325,6 @@ var lastLoop = getTimestamp();
 var secondsSinceReset = 0;
 var currentTime = 0;
 
-setInterval(function () {
-	isActivityPaused = isPaused();
-}, 500);
-
 var rendersDebug = 0;
 
 function requestAnimationFrameOwnGap() {
@@ -394,7 +390,6 @@ function touchEventOwnGap(x, y, index, action, screenWidth, screenHeight) {
 
 function tick() {
 	//while (!shouldExit()) {
-		if (!isActivityPaused) {
 			currentTime = getTimestamp();
 			for (l = 0; l < _timer.length; ++l) {
 				if (_timer[l] && _timer[l].targetTime <= currentTime) {
@@ -430,15 +425,6 @@ function tick() {
 				++secondsSinceReset;
 				lastLoop = getTimestamp();
 			}
-		} else {
-			if (!isPaused()) {
-				isActivityPaused = false;
-				currentTime = getTimestamp();
-				for (v = 0; v < _timer.length; ++v) {
-					_timer[v].targetTime = currentTime + _timer[v].timeout;
-				}
-			}
-		}
 	//}
 }
 registerTick();

@@ -121,7 +121,7 @@ public class FastCanvasView extends GLSurfaceView {
 	public void surfaceChanged(SurfaceHolder holder, int format, int w, int h)
 	{
         Log.i("CANVAS", "CanvasView surfaceChanged");
-		OwnGapActivity.surfaceChanged(w, h);
+		//OwnGapActivity.surfaceChanged(w, h);
 	    super.surfaceChanged(holder, format, w, h);
 	}
 	
@@ -131,9 +131,9 @@ public class FastCanvasView extends GLSurfaceView {
         Log.i("CANVAS", "CanvasView surfaceDestroyed");
 		isPaused = true;
 	    super.surfaceDestroyed(holder);
-		super.onPause();
-		OwnGapActivity.contextLost();
-		mRenderer.onSurfaceDestroyed();
+		//super.onPause();
+		//OwnGapActivity.contextLost();
+		//mRenderer.onSurfaceDestroyed();
 	}
 
 	public final FastCanvasRenderer mRenderer;

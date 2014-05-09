@@ -34,6 +34,7 @@ public class OwnGapActivity extends Activity {
 	private int imagesNumbers = 0;
 
 	private Thread scriptThread;
+    private boolean isInited = false;
 
 	private void startScriptAndStuff() {
         fastCanvasView = new FastCanvasView(OwnGapActivity.this);
@@ -46,6 +47,7 @@ public class OwnGapActivity extends Activity {
             @Override
             public void run() {
                 Init(OwnGapActivity.this.getAssets(), "ownGap/index.js");
+                isInited = true;
 
                 enterEventLoop();
             }
@@ -98,6 +100,7 @@ public class OwnGapActivity extends Activity {
 		super.onResume();
 		this.paused = false;
 		//startScriptAndStuff();
+		this.fastCanvasView.isPaused = false;
 	}
 
 	@Override
@@ -109,7 +112,7 @@ public class OwnGapActivity extends Activity {
 		//scriptThread = null;
 		//this.unregisterReceiver(broadcastReceiver);
 		//wl.release();
-		//this.finish();
+		this.fastCanvasView.isPaused = true;
 	}
 
     public boolean IsPaused() {

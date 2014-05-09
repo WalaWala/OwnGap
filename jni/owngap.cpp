@@ -328,6 +328,13 @@ void DispatchDebugMessages() {
 	Debug::ProcessDebugMessages();
 }
 
+
+static bool IsPausedInt() {
+	JNIEnv* env;
+	vm->AttachCurrentThread(&env, NULL);
+	return env->CallBooleanMethod(jniObj, isPausedJava);
+}
+
 void EventLoop() {
 	Locker v8Locker(isolate);
 	//Locker locker(isolate);
@@ -344,17 +351,18 @@ void EventLoop() {
 		return;
 	}
 	Local<Function> requestAnimFrame_fun = Handle<Function>::Cast(requestAnimFrame_val);
+	Local<Value> args[] = { };
 	while (true) {
 	    sleep(0);
-		Locker v8Locker(isolate);
-		Local<Value> args[] = { };
-		Local<Value> result = tick->Call(context_local->Global(), 0, args);
-		if (renderNow) {
-			Local<Value> args[] = { };
-			Local<Value> result = requestAnimFrame_fun->Call(context_local->Global(), 0, args);
-			renderNow = false;
+	    if (!IsPausedInt()) {
+			Locker v8Locker(isolate);
+			tick->Call(context_local->Global(), 0, args);
+			if (renderNow) {
+				requestAnimFrame_fun->Call(context_local->Global(), 0, args);
+				renderNow = false;
+			}
+			Unlocker unlocker(isolate);
 		}
-		Unlocker unlocker(isolate);
     }
 }
 
@@ -438,10 +446,9 @@ static void GetHttpResponse(const FunctionCallbackInfo<Value>& args) {
 
 static void IsPaused(const FunctionCallbackInfo<Value>& args) {
 	//Locker v8Locker(isolate);
-	JNIEnv* env;
 	HandleScope handle_scope(isolate);
-	vm->AttachCurrentThread(&env, NULL);
-	bool paused = env->CallBooleanMethod(jniObj, isPausedJava);
+
+	bool paused = IsPausedInt();
 
 	args.GetReturnValue().Set(Boolean::New(paused));
 }
