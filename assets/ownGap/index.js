@@ -377,7 +377,7 @@ function touchEventOwnGap(x, y, index, action, screenWidth, screenHeight) {
 			evtList = touchStartEvents;
 			break;
 		case 1: // up
-			evt.type = "touchup";
+			evt.type = "touchend";
 			evtList = touchUpEvents;
 			break;
 		case 2: // move
