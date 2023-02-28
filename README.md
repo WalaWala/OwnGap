@@ -4,9 +4,6 @@ A native replacement for the HTML canvas. It executes JavaScript as code behind 
 Currently made for the impact.js engine, but should work with other engines as well. There is an Ouya-specific
 controller used, but this could easily be removed. 
 
-For details or questions, have a look at my blog:
-
-http://www.walawala.org/blog/
 
 
 TODO
